@@ -5,7 +5,7 @@ import "./responsive.css";
 import Dashboard from "./pages/Dashboard";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
-import React, { createContext, useEffect, useState, useRef } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Products from "./pages/Products";
@@ -53,7 +53,7 @@ function App() {
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
   );
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [windowWidth, _setWindowWidth] = useState(window.innerWidth);
   const [catData, setCatData] = useState([]);
   const [user, setUser] = useState({
     name: "",
@@ -63,7 +63,7 @@ function App() {
 
   const [isOpenNav, setIsOpenNav] = useState(false);
 
-  const [baseUrl, setBaseUrl] = useState("http://localhost:4000");
+  const [baseUrl, _setBaseUrl] = useState("http://localhost:4000");
 
   const [progress, setProgress] = useState(0);
   const [alertBox, setAlertBox] = useState({
@@ -72,7 +72,7 @@ function App() {
     open: false,
   });
 
-  const [selectedLocation, setSelectedLocation] = useState("");
+  const [selectedLocation, _setSelectedLocation] = useState("");
   const [countryList, setCountryList] = useState([]);
   const [selectedCountry, setselectedCountry] = useState("");
 
@@ -108,11 +108,11 @@ function App() {
   const countryListArr = [];
   
   const getCountry = async (url) => {
-    const responsive = await axios.get(url).then((res) => {
+    const _responsive = await axios.get(url).then((res) => {
       
       if (res !== null) {
         //console.log(res.data.data);
-        res.data.data.map((item, index) => {
+        res.data.data.map((item, _index) => {
           countryListArr.push({
             value:item?.iso2,
             label:item?.country,
